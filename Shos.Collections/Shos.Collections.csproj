@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <Copyright>Copyright © 2020 Fujio Kojima</Copyright>
+    <Authors>Fujio Kojima</Authors>
+    <Company>Sho's Software</Company>
+  </PropertyGroup>
+</Project>
