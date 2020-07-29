@@ -9,4 +9,7 @@
     <PackageProjectUrl>https://github.com/Fujiwo/Shos.Collections</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Fujiwo/Shos.Collections</RepositoryUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ShosLinkedList.2020072902.cs" />
+  </ItemGroup>
 </Project>
