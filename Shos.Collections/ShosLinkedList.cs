@@ -12,58 +12,28 @@ namespace Shos.Collections
             public TElement Value { get; set; }
             public Node? Next { get; set; } = null;
 
-            public Node()
-            {}
-
+            public Node() {}
             public Node(TElement value) => Value = value;
         }
 
-        public Node? First { get; private set; }  = null;
+        Node top    = new Node();
+        Node bottom = new Node();
 
-        public Node? Last {
-            get {
-                for (var node = First; node != null; node = node.Next) {
-                    if (node.Next == null)
-                        return node;
-                }
-                return null;
-            }
-        }
+        public Node? First => Count == 0 ? null : top.Next;
+        public Node? Last => Count == 0 ? null : PreviousNode(bottom);
 
         public int Count { get; private set; } = 0;
 
+        public ShosLinkedList() => top.Next = bottom;
+
         public void Add(TElement element) => AddLast(element);
-
-        public void AddFirst(TElement element)
-        {
-            var newNode = new Node(element);
-            if (First == null) {
-                First = newNode;
-            } else {
-                Debug.Assert(Last != null);
-                newNode.Next = First;
-                First = newNode;
-            }
-            Count++;
-        }
-
-        public void AddLast(TElement element)
-        {
-            var newNode = new Node(element);
-            if (First == null) {
-                First = newNode;
-            } else {
-                Debug.Assert(Last != null);
-                Last.Next = newNode;
-            }
-            Count++;
-        }
+        public void AddFirst(TElement element) => AddAfter(top, element);
+        public void AddLast(TElement element) => AddBefore(bottom, element);
 
         public void AddAfter(Node node, TElement element)
         {
             if (node == null)
                 throw new ArgumentNullException();
-
 
             var newNode  = new Node(element);
             newNode.Next = node.Next;
@@ -76,16 +46,12 @@ namespace Shos.Collections
             if (node == null)
                 throw new ArgumentNullException();
 
-            var newNode = new Node(element);
+            Debug.Assert(PreviousNode(node) != null);
+            Debug.Assert(object.ReferenceEquals(PreviousNode(node).Next, node));
 
-            var previousNode = PreviousNode(node);
-            if (previousNode == null) {
-                AddFirst(element);
-            } else {
-                Debug.Assert(object.ReferenceEquals(previousNode.Next, node));
-                newNode.Next = node;
-                previousNode.Next = newNode;
-            }
+            var newNode             = new Node(element);
+            newNode.Next            = node;
+            PreviousNode(node).Next = newNode;
             Count++;
         }
 
@@ -100,22 +66,22 @@ namespace Shos.Collections
 
         public IEnumerator<TElement> GetEnumerator()
         {
-            for (var node = First; node != null; node = node.Next)
+            for (var node = top.Next; !object.ReferenceEquals(node, bottom); node = node.Next)
                 yield return node.Value;
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        Node? PreviousNode(Node node)
+        Node PreviousNode(Node node)
         {
             if (node == null)
                 throw new ArgumentNullException();
 
-            for (var previousNode = First; previousNode != null; previousNode = previousNode.Next) {
+            for (var previousNode = top; previousNode != null; previousNode = previousNode.Next) {
                 if (object.ReferenceEquals(previousNode.Next, node))
                     return previousNode;
             }
-            return null;
+            throw new InvalidOperationException();
         }
     }
 }
