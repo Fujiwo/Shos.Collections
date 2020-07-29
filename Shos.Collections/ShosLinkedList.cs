@@ -57,7 +57,7 @@ namespace Shos.Collections
 
         public Node? Find(TElement element)
         {
-            for (var node = First; node != null; node = node.Next) {
+            for (var node = top.Next; !object.ReferenceEquals(node, bottom); node = node.Next) {
                 if (node.Value.Equals(element))
                     return node;
             }
