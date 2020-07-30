@@ -1,13 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-    <LangVersion>latest</LangVersion>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <Copyright>Copyright © 2020 Fujio Kojima</Copyright>
     <Authors>Fujio Kojima</Authors>
     <Company>Sho's Software</Company>
     <PackageProjectUrl>https://github.com/Fujiwo/Shos.Collections</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Fujiwo/Shos.Collections</RepositoryUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shos.Collections\Shos.Collections.csproj" />
+  </ItemGroup>
+
 </Project>

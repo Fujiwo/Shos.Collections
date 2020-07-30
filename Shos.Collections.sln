@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shos.CollectionsBenchMarks", "Shos.CollectionsBenchMarks\Shos.CollectionsBenchMarks.csproj", "{9F65F1F7-161B-4A26-8D64-BE64B62DC5CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5F7B06BB-4831-46E0-AF5C-7FA842BC4EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F7B06BB-4831-46E0-AF5C-7FA842BC4EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F7B06BB-4831-46E0-AF5C-7FA842BC4EC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F65F1F7-161B-4A26-8D64-BE64B62DC5CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F65F1F7-161B-4A26-8D64-BE64B62DC5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F65F1F7-161B-4A26-8D64-BE64B62DC5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F65F1F7-161B-4A26-8D64-BE64B62DC5CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

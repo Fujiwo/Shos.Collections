@@ -2,7 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <Copyright>Copyright © 2020 Fujio Kojima</Copyright>
+    <Authors>Fujio Kojima</Authors>
+    <Company>Sho's Software</Company>
+    <PackageProjectUrl>https://github.com/Fujiwo/Shos.Collections</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Fujiwo/Shos.Collections</RepositoryUrl>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

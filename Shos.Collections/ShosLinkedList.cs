@@ -85,7 +85,7 @@ namespace Shos.Collections
             if (previousNode == null) {
                 AddFirst(value);
             } else {
-                Debug.Assert(object.ReferenceEquals(previousNode.Next, node));
+                Debug.Assert(ReferenceEquals(previousNode.Next, node));
                 newNode.Next = node;
                 previousNode.Next = newNode;
             }
@@ -101,7 +101,7 @@ namespace Shos.Collections
             if (previousNode == null) {
                 First = node.Next;
             } else {
-                Debug.Assert(object.ReferenceEquals(previousNode.Next, node));
+                Debug.Assert(ReferenceEquals(previousNode.Next, node));
                 previousNode.Next = node.Next;
             }
             Count--;
@@ -191,7 +191,7 @@ namespace Shos.Collections
                 throw new ArgumentNullException();
 
             for (var previousNode = First; previousNode != null; previousNode = previousNode.Next) {
-                if (object.ReferenceEquals(previousNode.Next, node))
+                if (ReferenceEquals(previousNode.Next, node))
                     return previousNode;
             }
             return null;
