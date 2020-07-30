@@ -25,6 +25,31 @@ namespace Shos.Collections
             public Node(object value) => this.value = value;
         }
 
+        //struct Enumerator : IEnumerator
+        //{
+        //    readonly ShosLinkedList3 linkedList;
+        //    Node                     currentNode;
+
+        //    public object Current => currentNode.value;
+
+        //    internal Enumerator(ShosLinkedList3 linkedList)
+        //    {
+        //        this.linkedList = linkedList;
+        //        currentNode     = linkedList.top;
+        //    }
+
+        //    public bool MoveNext()
+        //    {
+        //        if (currentNode.next == linkedList.bottom)
+        //            return false;
+        //        currentNode = currentNode.next;
+        //        return true;
+        //    }
+
+        //    public void Reset()
+        //        => currentNode = linkedList.top;
+        //}
+
         Node top    = new Node();
         Node bottom = new Node();
 
@@ -134,6 +159,9 @@ namespace Shos.Collections
             }
             return null;
         }
+
+        //public IEnumerator GetEnumerator()
+        //    => new Enumerator(this);
 
         public IEnumerator GetEnumerator()
         {

@@ -26,6 +26,36 @@ namespace Shos.Collections
             public Node(TValue value) => this.value = value;
         }
 
+        //struct Enumerator : IEnumerator<TValue>
+        //{
+        //    readonly ShosLinkedList<TValue> linkedList;
+        //    Node                            currentNode;
+
+        //    public TValue Current => currentNode.value;
+
+        //    object IEnumerator.Current => Current;
+
+        //    internal Enumerator(ShosLinkedList<TValue> linkedList)
+        //    {
+        //        this.linkedList = linkedList;
+        //        currentNode     = linkedList.top;
+        //    }
+
+        //    public void Dispose()
+        //    {}
+
+        //    public bool MoveNext()
+        //    {
+        //        if (currentNode.next == linkedList.bottom)
+        //            return false;
+        //        currentNode = currentNode.next;
+        //        return true;
+        //    }
+
+        //    public void Reset()
+        //        => currentNode = linkedList.top;
+        //}
+
         Node top    = new Node();
         Node bottom = new Node();
 
@@ -135,6 +165,9 @@ namespace Shos.Collections
             }
             return null;
         }
+
+        //public IEnumerator<TValue> GetEnumerator()
+        //    => new Enumerator(this);
 
         public IEnumerator<TValue> GetEnumerator()
         {

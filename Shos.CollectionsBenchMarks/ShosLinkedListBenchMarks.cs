@@ -20,6 +20,48 @@ namespace Shos.Collections.BenchMarks
         ShosLinkedList <int>? linkedList ;
         ShosLinkedList3     ? linkedList3;
 
+        #region ForEachTest
+        [Benchmark]
+        public void ForEachTest0()
+        {
+            int value;
+            foreach (var element in linkedList0)
+                value = element;
+        }
+
+        [Benchmark]
+        public void ForEachTest1()
+        {
+            int value;
+            foreach (var element in linkedList1)
+                value = element;
+        }
+
+        [Benchmark]
+        public void ForEachTest2()
+        {
+            int value;
+            foreach (var element in linkedList2)
+                value = element;
+        }
+
+        [Benchmark]
+        public void ForEachTest()
+        {
+            int value;
+            foreach (var element in linkedList)
+                value = element;
+        }
+
+        [Benchmark]
+        public void ForEachTest3()
+        {
+            int value;
+            foreach (var element in linkedList3)
+                value = (int)element;
+        }
+        #endregion // ForEachTest
+
         #region AddLastTest
         [Benchmark]
         public void AddLastTest0()
