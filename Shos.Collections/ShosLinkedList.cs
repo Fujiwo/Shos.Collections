@@ -159,6 +159,6 @@ namespace Shos.Collections
         static void RemoveNode(Node node)
             => Connect(node.previous, node.next);
 
-        static EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
+        static readonly EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
     }
 }

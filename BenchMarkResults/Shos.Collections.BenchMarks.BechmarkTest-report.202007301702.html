@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Shos.Collections.BenchMarks.BechmarkTest-20200730-170024</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.997 (1909/November2018Update/19H2)
+Intel Core i7-7500U CPU 2.70GHz (Kaby Lake), 1 CPU, 4 logical and 2 physical cores
+.NET Core SDK=3.1.302
+  [Host]   : .NET Core 3.1.6 (CoreCLR 4.700.20.26901, CoreFX 4.700.20.31603), X64 RyuJIT
+  ShortRun : .NET Core 3.1.6 (CoreCLR 4.700.20.26901, CoreFX 4.700.20.31603), X64 RyuJIT
+</code></pre>
+<pre><code>Job=ShortRun  InvocationCount=1  IterationCount=3  
+LaunchCount=1  UnrollFactor=1  WarmupCount=3  
+</code></pre>
+
+<table>
+<thead><tr><th>    Method</th><th>  Mean</th><th>    Error</th><th> StdDev</th>
+</tr>
+</thead><tbody><tr><td>AddLastTest0</td><td>352.5 &mu;s</td><td>2,020.99 &mu;s</td><td>110.78 &mu;s</td>
+</tr><tr><td>AddLastTest1</td><td>355,358.3 &mu;s</td><td>250,077.65 &mu;s</td><td>13,707.60 &mu;s</td>
+</tr><tr><td>AddLastTest2</td><td>354,078.5 &mu;s</td><td>171,813.23 &mu;s</td><td>9,417.66 &mu;s</td>
+</tr><tr><td>AddLastTest</td><td>254.9 &mu;s</td><td>42.13 &mu;s</td><td>2.31 &mu;s</td>
+</tr><tr><td>AddLastTest3</td><td>406.9 &mu;s</td><td>1,800.23 &mu;s</td><td>98.68 &mu;s</td>
+</tr><tr><td>AddFirstTest0</td><td>302.0 &mu;s</td><td>286.52 &mu;s</td><td>15.71 &mu;s</td>
+</tr><tr><td>AddFirstTest1</td><td>183.7 &mu;s</td><td>65.13 &mu;s</td><td>3.57 &mu;s</td>
+</tr><tr><td>AddFirstTest2</td><td>203.2 &mu;s</td><td>294.10 &mu;s</td><td>16.12 &mu;s</td>
+</tr><tr><td>AddFirstTest</td><td>271.6 &mu;s</td><td>682.63 &mu;s</td><td>37.42 &mu;s</td>
+</tr><tr><td>AddFirstTest3</td><td>348.4 &mu;s</td><td>688.55 &mu;s</td><td>37.74 &mu;s</td>
+</tr><tr><td>RemoveFirstTest0</td><td>269.3 &mu;s</td><td>2,117.97 &mu;s</td><td>116.09 &mu;s</td>
+</tr><tr><td>RemoveFirstTest1</td><td>111,405.3 &mu;s</td><td>44,898.39 &mu;s</td><td>2,461.03 &mu;s</td>
+</tr><tr><td>RemoveFirstTest2</td><td>161.8 &mu;s</td><td>287.74 &mu;s</td><td>15.77 &mu;s</td>
+</tr><tr><td>RemoveFirstTest</td><td>147.4 &mu;s</td><td>107.27 &mu;s</td><td>5.88 &mu;s</td>
+</tr><tr><td>RemoveFirstTest3</td><td>170.5 &mu;s</td><td>230.74 &mu;s</td><td>12.65 &mu;s</td>
+</tr><tr><td>RemoveLastTest0</td><td>128.4 &mu;s</td><td>443.93 &mu;s</td><td>24.33 &mu;s</td>
+</tr><tr><td>RemoveLastTest1</td><td>212,965.5 &mu;s</td><td>79,228.71 &mu;s</td><td>4,342.79 &mu;s</td>
+</tr><tr><td>RemoveLastTest2</td><td>216,602.1 &mu;s</td><td>30,296.74 &mu;s</td><td>1,660.67 &mu;s</td>
+</tr><tr><td>RemoveLastTest</td><td>141.5 &mu;s</td><td>57.99 &mu;s</td><td>3.18 &mu;s</td>
+</tr><tr><td>RemoveLastTest3</td><td>152.0 &mu;s</td><td>138.72 &mu;s</td><td>7.60 &mu;s</td>
+</tr><tr><td>FindTest0</td><td>210,627.4 &mu;s</td><td>300,536.82 &mu;s</td><td>16,473.44 &mu;s</td>
+</tr><tr><td>FindTest1</td><td>274,156.0 &mu;s</td><td>727,170.87 &mu;s</td><td>39,858.69 &mu;s</td>
+</tr><tr><td>FindTest2</td><td>147,188.7 &mu;s</td><td>263,598.29 &mu;s</td><td>14,448.71 &mu;s</td>
+</tr><tr><td>FindTest</td><td>146,729.9 &mu;s</td><td>16,062.03 &mu;s</td><td>880.41 &mu;s</td>
+</tr><tr><td>FindTest3</td><td>600,765.6 &mu;s</td><td>593,359.67 &mu;s</td><td>32,524.05 &mu;s</td>
+</tr><tr><td>FindLastTest0</td><td>432,490.7 &mu;s</td><td>3,144,946.73 &mu;s</td><td>172,385.14 &mu;s</td>
+</tr><tr><td>FindLastTest1</td><td>527,107.8 &mu;s</td><td>452,608.98 &mu;s</td><td>24,809.03 &mu;s</td>
+</tr><tr><td>FindLastTest2</td><td>326,934.9 &mu;s</td><td>381,009.06 &mu;s</td><td>20,884.39 &mu;s</td>
+</tr><tr><td>FindLastTest</td><td>179,729.0 &mu;s</td><td>153,438.41 &mu;s</td><td>8,410.48 &mu;s</td>
+</tr><tr><td>FindLastTest3</td><td>629,044.9 &mu;s</td><td>330,993.64 &mu;s</td><td>18,142.88 &mu;s</td>
+</tr></tbody></table>
+</body>
+</html>

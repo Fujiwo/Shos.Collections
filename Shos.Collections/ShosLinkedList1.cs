@@ -205,6 +205,6 @@ namespace Shos.Collections
             return null;
         }
 
-        static EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
+        static readonly EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
     }
 }

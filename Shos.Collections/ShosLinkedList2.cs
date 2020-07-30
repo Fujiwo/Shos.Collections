@@ -163,6 +163,6 @@ namespace Shos.Collections
         static void Connect(Node node1, Node node2)
             => node1.next = node2;
 
-        static EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
+        static readonly EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
     }
 }
