@@ -22,6 +22,17 @@ namespace Shos.Collections.Tests
         }
 
         [TestMethod()]
+        public void コレクションでCreateできる()
+        {
+            linkedList = new ShosLinkedList3(new int[] { });
+            Assert.AreEqual(0, linkedList.Count);
+
+            linkedList = new ShosLinkedList3(new[] { 10, 30, 70 });
+            Assert.AreEqual(3, linkedList.Count);
+            AssertExtensions.AreEqual(new[] { 10, 30, 70 }, linkedList);
+        }
+
+        [TestMethod()]
         public void AddLastできる()
         {
             linkedList.AddLast(100);

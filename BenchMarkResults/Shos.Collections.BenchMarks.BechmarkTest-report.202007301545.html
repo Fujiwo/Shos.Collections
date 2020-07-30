@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Shos.Collections.BenchMarks.BechmarkTest-20200730-154349</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.959 (1909/November2018Update/19H2)
+Intel Core i7-3770 CPU 3.40GHz (Ivy Bridge), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.1.301
+  [Host]   : .NET Core 3.1.5 (CoreCLR 4.700.20.26901, CoreFX 4.700.20.27001), X64 RyuJIT
+  ShortRun : .NET Core 3.1.5 (CoreCLR 4.700.20.26901, CoreFX 4.700.20.27001), X64 RyuJIT
+</code></pre>
+<pre><code>Job=ShortRun  InvocationCount=1  IterationCount=3  
+LaunchCount=1  UnrollFactor=1  WarmupCount=3  
+</code></pre>
+
+<table>
+<thead><tr><th>    Method</th><th>   Mean</th><th>    Error</th><th>  StdDev</th><th> Median</th>
+</tr>
+</thead><tbody><tr><td>AddLastTest0</td><td>172.27 &mu;s</td><td>54.89 &mu;s</td><td>3.009 &mu;s</td><td>172.00 &mu;s</td>
+</tr><tr><td>AddLastTest1</td><td>291,884.33 &mu;s</td><td>2,031,903.50 &mu;s</td><td>111,375.487 &mu;s</td><td>232,697.80 &mu;s</td>
+</tr><tr><td>AddLastTest2</td><td>233,335.90 &mu;s</td><td>103,559.54 &mu;s</td><td>5,676.448 &mu;s</td><td>232,063.70 &mu;s</td>
+</tr><tr><td>AddLastTest</td><td>128.00 &mu;s</td><td>14.48 &mu;s</td><td>0.794 &mu;s</td><td>128.30 &mu;s</td>
+</tr><tr><td>AddLastTest3</td><td>231.03 &mu;s</td><td>1,584.08 &mu;s</td><td>86.829 &mu;s</td><td>193.60 &mu;s</td>
+</tr><tr><td>AddFirstTest0</td><td>174.58 &mu;s</td><td>106.10 &mu;s</td><td>5.816 &mu;s</td><td>173.25 &mu;s</td>
+</tr><tr><td>AddFirstTest1</td><td>95.12 &mu;s</td><td>35.86 &mu;s</td><td>1.966 &mu;s</td><td>94.35 &mu;s</td>
+</tr><tr><td>AddFirstTest2</td><td>90.72 &mu;s</td><td>92.06 &mu;s</td><td>5.046 &mu;s</td><td>88.75 &mu;s</td>
+</tr><tr><td>AddFirstTest</td><td>127.23 &mu;s</td><td>19.51 &mu;s</td><td>1.069 &mu;s</td><td>127.80 &mu;s</td>
+</tr><tr><td>AddFirstTest3</td><td>173.90 &mu;s</td><td>82.34 &mu;s</td><td>4.513 &mu;s</td><td>171.60 &mu;s</td>
+</tr><tr><td>RemoveFirstTest0</td><td>111.68 &mu;s</td><td>62.17 &mu;s</td><td>3.408 &mu;s</td><td>113.55 &mu;s</td>
+</tr><tr><td>RemoveFirstTest1</td><td>76,199.43 &mu;s</td><td>15,668.90 &mu;s</td><td>858.865 &mu;s</td><td>75,830.00 &mu;s</td>
+</tr><tr><td>RemoveFirstTest2</td><td>88.98 &mu;s</td><td>140.10 &mu;s</td><td>7.679 &mu;s</td><td>84.65 &mu;s</td>
+</tr><tr><td>RemoveFirstTest</td><td>120.30 &mu;s</td><td>354.08 &mu;s</td><td>19.409 &mu;s</td><td>127.60 &mu;s</td>
+</tr><tr><td>RemoveFirstTest3</td><td>165.90 &mu;s</td><td>1,057.11 &mu;s</td><td>57.944 &mu;s</td><td>188.30 &mu;s</td>
+</tr><tr><td>RemoveLastTest0</td><td>95.67 &mu;s</td><td>104.81 &mu;s</td><td>5.745 &mu;s</td><td>92.40 &mu;s</td>
+</tr><tr><td>RemoveLastTest1</td><td>153,620.67 &mu;s</td><td>44,511.37 &mu;s</td><td>2,439.819 &mu;s</td><td>153,447.40 &mu;s</td>
+</tr><tr><td>RemoveLastTest2</td><td>148,120.43 &mu;s</td><td>23,982.62 &mu;s</td><td>1,314.568 &mu;s</td><td>147,688.60 &mu;s</td>
+</tr><tr><td>RemoveLastTest</td><td>102.80 &mu;s</td><td>53.84 &mu;s</td><td>2.951 &mu;s</td><td>102.70 &mu;s</td>
+</tr><tr><td>RemoveLastTest3</td><td>162.32 &mu;s</td><td>1,642.22 &mu;s</td><td>90.016 &mu;s</td><td>121.95 &mu;s</td>
+</tr><tr><td>FindTest0</td><td>94,201.05 &mu;s</td><td>14,321.31 &mu;s</td><td>784.999 &mu;s</td><td>94,186.65 &mu;s</td>
+</tr><tr><td>FindTest1</td><td>215,908.07 &mu;s</td><td>51,683.51 &mu;s</td><td>2,832.948 &mu;s</td><td>215,250.10 &mu;s</td>
+</tr><tr><td>FindTest2</td><td>225,273.93 &mu;s</td><td>35,751.86 &mu;s</td><td>1,959.680 &mu;s</td><td>225,041.90 &mu;s</td>
+</tr><tr><td>FindTest</td><td>223,372.87 &mu;s</td><td>117,140.53 &mu;s</td><td>6,420.868 &mu;s</td><td>227,067.90 &mu;s</td>
+</tr><tr><td>FindTest3</td><td>279,509.92 &mu;s</td><td>13,409.04 &mu;s</td><td>734.995 &mu;s</td><td>279,440.75 &mu;s</td>
+</tr><tr><td>FindLastTest0</td><td>111,351.77 &mu;s</td><td>19,841.74 &mu;s</td><td>1,087.593 &mu;s</td><td>111,426.80 &mu;s</td>
+</tr><tr><td>FindLastTest1</td><td>438,317.87 &mu;s</td><td>208,458.52 &mu;s</td><td>11,426.315 &mu;s</td><td>433,010.90 &mu;s</td>
+</tr><tr><td>FindLastTest2</td><td>466,145.07 &mu;s</td><td>790,475.10 &mu;s</td><td>43,328.608 &mu;s</td><td>450,524.20 &mu;s</td>
+</tr><tr><td>FindLastTest</td><td>240,288.90 &mu;s</td><td>507,527.96 &mu;s</td><td>27,819.320 &mu;s</td><td>232,599.30 &mu;s</td>
+</tr><tr><td>FindLastTest3</td><td>276,939.42 &mu;s</td><td>29,670.33 &mu;s</td><td>1,626.331 &mu;s</td><td>276,342.55 &mu;s</td>
+</tr></tbody></table>
+</body>
+</html>

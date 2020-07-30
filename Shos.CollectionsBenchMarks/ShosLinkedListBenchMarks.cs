@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+using System.Collections.Generic;
 
 namespace Shos.Collections.BenchMarks
 {
@@ -13,12 +14,20 @@ namespace Shos.Collections.BenchMarks
     {
         const int dataNumber = 10000;
 
+        LinkedList     <int>? linkedList0;
         ShosLinkedList1<int>? linkedList1;
         ShosLinkedList2<int>? linkedList2;
         ShosLinkedList <int>? linkedList ;
         ShosLinkedList3     ? linkedList3;
 
         #region AddLastTest
+        [Benchmark]
+        public void AddLastTest0()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList0.AddLast(number);
+        }
+
         [Benchmark]
         public void AddLastTest1()
         {
@@ -50,6 +59,13 @@ namespace Shos.Collections.BenchMarks
 
         #region AddFirstTest
         [Benchmark]
+        public void AddFirstTest0()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList0.AddFirst(number);
+        }
+
+        [Benchmark]
         public void AddFirstTest1()
         {
             for (var number = 1; number <= dataNumber; number++)
@@ -79,6 +95,13 @@ namespace Shos.Collections.BenchMarks
         #endregion // AddFirstTest
 
         #region RemoveFirstTest
+        [Benchmark]
+        public void RemoveFirstTest0()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList0.RemoveFirst();
+        }
+
         [Benchmark]
         public void RemoveFirstTest1()
         {
@@ -110,6 +133,13 @@ namespace Shos.Collections.BenchMarks
 
         #region RemoveLastTest
         [Benchmark]
+        public void RemoveLastTest0()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList0.RemoveLast();
+        }
+
+        [Benchmark]
         public void RemoveLastTest1()
         {
             for (var number = 1; number <= dataNumber; number++)
@@ -139,6 +169,14 @@ namespace Shos.Collections.BenchMarks
         #endregion // RemoveLastTest
 
         #region FindTest
+        [Benchmark]
+        public void FindTest0()
+        {
+            LinkedListNode<int>? node = null;
+            for (var number = 1; number <= dataNumber; number++)
+                node = linkedList0.Find(dataNumber / 2);
+        }
+
         [Benchmark]
         public void FindTest1()
         {
@@ -173,6 +211,14 @@ namespace Shos.Collections.BenchMarks
         #endregion // FindTest
 
         #region FindLastTest
+        [Benchmark]
+        public void FindLastTest0()
+        {
+            LinkedListNode<int>? node = null;
+            for (var number = 1; number <= dataNumber; number++)
+                node = linkedList0.FindLast(dataNumber / 2);
+        }
+
         [Benchmark]
         public void FindLastTest1()
         {
@@ -209,6 +255,10 @@ namespace Shos.Collections.BenchMarks
         [IterationSetup]
         public void Setup()
         {
+            linkedList0 = new LinkedList<int>();
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList0.AddLast(number);
+
             linkedList1 = new ShosLinkedList1<int>();
             for (var number = 1; number <= dataNumber; number++)
                 linkedList1.AddLast(number);

@@ -13,21 +13,24 @@ namespace Shos.Collections
     {
         public class Node
         {
-            public TValue Value { get; set; }
-            public Node? Next { get; set; } = null;
+            internal TValue value;
+            internal Node?  next = null;
+
+            public TValue Value => value;
+            public Node?  Next  => next;
 
             public Node()
             { }
 
-            public Node(TValue value) => Value = value;
+            public Node(TValue value) => this.value = value;
         }
 
         public Node? First { get; private set; } = null;
 
         public Node? Last {
             get {
-                for (var node = First; node != null; node = node.Next) {
-                    if (node.Next == null)
+                for (var node = First; node != null; node = node.next) {
+                    if (node.next == null)
                         return node;
                 }
                 return null;
@@ -35,6 +38,15 @@ namespace Shos.Collections
         }
 
         public int Count { get; private set; } = 0;
+
+        public ShosLinkedList1()
+        {}
+
+        public ShosLinkedList1(IEnumerable<TValue> values)
+        {
+            foreach (var value in values)
+                AddLast(value);
+        }
 
         public void Add(TValue value) => AddLast(value);
 
@@ -45,7 +57,7 @@ namespace Shos.Collections
                 First = newNode;
             } else {
                 Debug.Assert(Last != null);
-                newNode.Next = First;
+                newNode.next = First;
                 First = newNode;
             }
             Count++;
@@ -58,7 +70,7 @@ namespace Shos.Collections
                 First = newNode;
             } else {
                 Debug.Assert(Last != null);
-                Last.Next = newNode;
+                Last.next = newNode;
             }
             Count++;
         }
@@ -70,8 +82,8 @@ namespace Shos.Collections
 
 
             var newNode = new Node(value);
-            newNode.Next = node.Next;
-            node.Next = newNode;
+            newNode.next = node.next;
+            node.next = newNode;
             Count++;
         }
 
@@ -86,9 +98,9 @@ namespace Shos.Collections
             if (previousNode == null) {
                 AddFirst(value);
             } else {
-                Debug.Assert(ReferenceEquals(previousNode.Next, node));
-                newNode.Next = node;
-                previousNode.Next = newNode;
+                Debug.Assert(previousNode.next == node);
+                newNode.next = node;
+                previousNode.next = newNode;
             }
             Count++;
         }
@@ -100,10 +112,10 @@ namespace Shos.Collections
 
             var previousNode = PreviousNode(node);
             if (previousNode == null) {
-                First = node.Next;
+                First = node.next;
             } else {
-                Debug.Assert(ReferenceEquals(previousNode.Next, node));
-                previousNode.Next = node.Next;
+                Debug.Assert(previousNode.next == node);
+                previousNode.next = node.next;
             }
             Count--;
         }
@@ -146,23 +158,18 @@ namespace Shos.Collections
             if (index + Count > array.Length)
                 throw new ArgumentException();
 
-            for (var node = First; node != null; node = node.Next)
-                array[index++] = node.Value;
+            for (var node = First; node != null; node = node.next)
+                array[index++] = node.value;
         }
 
         public bool Contains(TValue value)
-        {
-            for (var node = First; node != null; node = node.Next) {
-                if (node.Value.Equals(value))
-                    return true;
-            }
-            return false;
-        }
+            => Find(value) != null;
 
         public Node? Find(TValue value)
         {
-            for (var node = First; node != null; node = node.Next) {
-                if (node.Value.Equals(value))
+
+            for (var node = First; node != null; node = node.next) {
+                if (defaultEqualityComparer.Equals(node.value, value))
                     return node;
             }
             return null;
@@ -171,8 +178,8 @@ namespace Shos.Collections
         public Node? FindLast(TValue value)
         {
             Node? foundNode = null;
-            for (var node = First; node != null; node = node.Next) {
-                if (node.Value.Equals(value))
+            for (var node = First; node != null; node = node.next) {
+                if (defaultEqualityComparer.Equals(node.value, value))
                     foundNode = node;
             }
             return foundNode;
@@ -180,8 +187,8 @@ namespace Shos.Collections
 
         public IEnumerator<TValue> GetEnumerator()
         {
-            for (var node = First; node != null; node = node.Next)
-                yield return node.Value;
+            for (var node = First; node != null; node = node.next)
+                yield return node.value;
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -191,11 +198,13 @@ namespace Shos.Collections
             if (node == null)
                 throw new ArgumentNullException();
 
-            for (var previousNode = First; previousNode != null; previousNode = previousNode.Next) {
-                if (ReferenceEquals(previousNode.Next, node))
+            for (var previousNode = First; previousNode != null; previousNode = previousNode.next) {
+                if (previousNode.next == node)
                     return previousNode;
             }
             return null;
         }
+
+        static EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
     }
 }
