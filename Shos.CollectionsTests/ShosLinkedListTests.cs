@@ -265,7 +265,7 @@ namespace Shos.Collections.Tests
             linkedList = new ShosLinkedList<int> { 30, 60 };
             array = new int[] { 10, 20 };
             linkedList.CopyTo(array, 0);
-            AssertExtensions.AreEqual(linkedList, array);
+            AssertExtensions.AreEqual(array, linkedList);
             array = new int[] { 10, 20, 30 };
             linkedList.CopyTo(array, 0);
             AssertExtensions.AreEqual(new [] { 30, 60, 30 }, array);

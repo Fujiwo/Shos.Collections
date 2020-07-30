@@ -15,6 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shos.CollectionsBenchMarks", "Shos.CollectionsBenchMarks\Shos.CollectionsBenchMarks.csproj", "{9F65F1F7-161B-4A26-8D64-BE64B62DC5CA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BenchMarkResults", "BenchMarkResults", "{E87BC2CC-9F8A-4791-B13D-26D231C8C931}"
+	ProjectSection(SolutionItems) = preProject
+		BenchMarkResults\Shos.Collections.BenchMarks.BechmarkTest-report.202007301331.csv = BenchMarkResults\Shos.Collections.BenchMarks.BechmarkTest-report.202007301331.csv
+		BenchMarkResults\Shos.Collections.BenchMarks.BechmarkTest-report.202007301331.html = BenchMarkResults\Shos.Collections.BenchMarks.BechmarkTest-report.202007301331.html
+		BenchMarkResults\Shos.Collections.BenchMarks.BechmarkTest-report.202007301331.xlsx = BenchMarkResults\Shos.Collections.BenchMarks.BechmarkTest-report.202007301331.xlsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +43,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E87BC2CC-9F8A-4791-B13D-26D231C8C931} = {E83F9AE9-5E21-4B39-97E2-AC70D5D2848A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {436C83B6-136D-43AF-85D0-1341751CFF3F}

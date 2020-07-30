@@ -8,6 +8,7 @@ namespace Shos.Collections
     // 参考: LinkedList<T> クラス (System.Collections.Generic) | Microsoft Docs
     // https://docs.microsoft.com/ja-jp/dotnet/api/system.collections.generic.linkedlist-1?view=netcore-3.1
 
+    // 単方向連結リスト
     public class ShosLinkedList1<TValue> : IEnumerable<TValue>
     {
         public class Node

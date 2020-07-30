@@ -6,12 +6,12 @@ namespace Shos.Collections.Tests
     using Shos.Collections;
 
     [TestClass()]
-    public class ShosLinkedList2Tests
+    public class ShosLinkedList3Tests
     {
-        ShosLinkedList2<int>? linkedList = null;
+        ShosLinkedList3? linkedList = null;
 
         [TestInitialize]
-        public void Setup() => linkedList = new ShosLinkedList2<int>();
+        public void Setup() => linkedList = new ShosLinkedList3();
 
         [TestMethod()]
         public void Createできる()
@@ -48,7 +48,7 @@ namespace Shos.Collections.Tests
             linkedList.AddLast(300);
             linkedList.AddLast(200);
             linkedList.AddLast(800);
-            AssertExtensions.AreEqual(new[] { 300, 200, 800 }, linkedList);
+            AssertExtensions.AreEqual(new [] { 300, 200, 800 }, linkedList);
         }
 
         [TestMethod()]
@@ -88,7 +88,7 @@ namespace Shos.Collections.Tests
         [TestMethod()]
         public void 初期化リストが使える()
         {
-            linkedList = new ShosLinkedList2<int> { 10, 60, 30 };
+            linkedList = new ShosLinkedList3 { 10, 60, 30 };
             AssertExtensions.AreEqual(new[] { 10, 60, 30 }, linkedList);
         }
 
@@ -100,7 +100,7 @@ namespace Shos.Collections.Tests
         [TestMethod()]
         public void AddAfterできる()
         {
-            linkedList = new ShosLinkedList2<int> { 10 };
+            linkedList = new ShosLinkedList3 { 10 };
             linkedList.AddAfter(linkedList.First, 70);
             AssertExtensions.AreEqual(new[] { 10, 70 }, linkedList);
 
@@ -121,7 +121,7 @@ namespace Shos.Collections.Tests
         [TestMethod()]
         public void AddBeforeできる()
         {
-            linkedList = new ShosLinkedList2<int> { 10 };
+            linkedList = new ShosLinkedList3 { 10 };
             linkedList.AddBefore(linkedList.First, 30);
             AssertExtensions.AreEqual(new[] { 30, 10 }, linkedList);
 
@@ -136,7 +136,7 @@ namespace Shos.Collections.Tests
         [TestMethod()]
         public void Clearできる()
         {
-            linkedList = new ShosLinkedList2<int> { 10, 70, 30 };
+            linkedList = new ShosLinkedList3 { 10, 70, 30 };
             linkedList.Clear();
             Assert.AreEqual(0, linkedList.Count);
             Assert.IsNull(linkedList.First);
@@ -155,7 +155,7 @@ namespace Shos.Collections.Tests
         [TestMethod()]
         public void Removeできる()
         {
-            linkedList = new ShosLinkedList2<int> { 10, 70, 30, 40, 60, 90, 100 };
+            linkedList = new ShosLinkedList3 { 10, 70, 30, 40, 60, 90, 100 };
 
             Assert.IsTrue(linkedList.Remove(10));
             AssertExtensions.AreEqual(new[] { 70, 30, 40, 60, 90, 100 }, linkedList);
@@ -185,13 +185,13 @@ namespace Shos.Collections.Tests
         [TestMethod()]
         public void RemoveFirstできる()
         {
-            linkedList = new ShosLinkedList2<int> { 60, 30, 20 };
+            linkedList = new ShosLinkedList3 { 60, 30, 20 };
             linkedList.RemoveFirst();
             AssertExtensions.AreEqual(new[] { 30, 20 }, linkedList);
             linkedList.RemoveFirst();
             AssertExtensions.AreEqual(new[] { 20 }, linkedList);
             linkedList.RemoveFirst();
-            AssertExtensions.AreEqual(new int[] { }, linkedList);
+            AssertExtensions.AreEqual(new int[] {}, linkedList);
         }
 
         [TestMethod()]
@@ -202,7 +202,7 @@ namespace Shos.Collections.Tests
         [TestMethod()]
         public void RemoveLastできる()
         {
-            linkedList = new ShosLinkedList2<int> { 20, 40, 80 };
+            linkedList = new ShosLinkedList3 { 20, 40, 80 };
             linkedList.RemoveLast();
             AssertExtensions.AreEqual(new[] { 20, 40 }, linkedList);
             linkedList.RemoveLast();
@@ -215,7 +215,7 @@ namespace Shos.Collections.Tests
         public void FindLastできる()
         {
             Assert.IsNull(linkedList.FindLast(10));
-            linkedList = new ShosLinkedList2<int> { 40, 30, 60, 30, 40, 20, 40 };
+            linkedList = new ShosLinkedList3 { 40, 30, 60, 30, 40, 20, 40 };
             Assert.IsNull(linkedList.FindLast(100));
 
             var node = linkedList.FindLast(40);
@@ -232,7 +232,7 @@ namespace Shos.Collections.Tests
         public void Containsできる()
         {
             Assert.IsFalse(linkedList.Contains(10));
-            linkedList = new ShosLinkedList2<int> { 30, 60 };
+            linkedList = new ShosLinkedList3 { 30, 60 };
             Assert.IsTrue(linkedList.Contains(30));
             Assert.IsFalse(linkedList.Contains(40));
         }
@@ -245,30 +245,30 @@ namespace Shos.Collections.Tests
         [TestMethod()]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void 負のindexでCopyToすると例外が飛ぶ()
-            => linkedList.CopyTo(new int[2], -1);
+            => linkedList.CopyTo(new object[2], -1);
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
         public void 大きさが足りないarrayにCopyToすると例外が飛ぶ()
         {
-            linkedList = new ShosLinkedList2<int> { 10, 30 };
-            linkedList.CopyTo(new int[2], 1);
+            linkedList = new ShosLinkedList3 { 10, 30 };
+            linkedList.CopyTo(new object[2], 1);
         }
 
         [TestMethod()]
         public void CopyToできる()
         {
-            var array = new int[] { };
+            var array = new object[] { };
             linkedList.CopyTo(array, 0);
             AssertExtensions.AreEqual(new int[] { }, array);
 
-            linkedList = new ShosLinkedList2<int> { 30, 60 };
-            array = new int[] { 10, 20 };
+            linkedList = new ShosLinkedList3 { 30, 60 };
+            array = new object[] { 10, 20 };
             linkedList.CopyTo(array, 0);
             AssertExtensions.AreEqual(array, linkedList);
-            array = new int[] { 10, 20, 30 };
+            array = new object[] { 10, 20, 30 };
             linkedList.CopyTo(array, 0);
-            AssertExtensions.AreEqual(new[] { 30, 60, 30 }, array);
+            AssertExtensions.AreEqual(new [] { 30, 60, 30 }, array);
             linkedList.CopyTo(array, 1);
             AssertExtensions.AreEqual(new[] { 30, 30, 60 }, array);
         }
