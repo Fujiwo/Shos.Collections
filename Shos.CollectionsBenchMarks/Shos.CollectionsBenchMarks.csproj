@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
     <Copyright>Copyright © 2020 Fujio Kojima</Copyright>
     <Authors>Fujio Kojima</Authors>
     <Company>Sho's Software</Company>

@@ -12,15 +12,10 @@ namespace Shos.Collections.BenchMarks
         const int dataNumber = 1000_000;
 
         ShosLinkedList1<int>? linkedList1;
-        ShosLinkedList<int>? linkedList;
+        ShosLinkedList2<int>? linkedList2;
+        ShosLinkedList <int>? linkedList ;
 
-        [Benchmark]
-        public void AddLastTest()
-        {
-            for (var number = 1; number <= dataNumber; number++)
-                linkedList.AddLast(number);
-        }
-
+        #region AddLastTest
         [Benchmark]
         public void AddLastTest1()
         {
@@ -29,12 +24,21 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void AddFirstTest()
+        public void AddLastTest2()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList.AddFirst(number);
+                linkedList2.AddLast(number);
         }
 
+        [Benchmark]
+        public void AddLastTest()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList.AddLast(number);
+        }
+        #endregion // AddLastTest
+
+        #region AddFirstTest
         [Benchmark]
         public void AddFirstTest1()
         {
@@ -43,12 +47,21 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void RemoveFirstTest()
+        public void AddFirstTest2()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList.RemoveFirst();
+                linkedList2.AddFirst(number);
         }
 
+        [Benchmark]
+        public void AddFirstTest()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList.AddFirst(number);
+        }
+        #endregion // AddFirstTest
+
+        #region RemoveFirstTest
         [Benchmark]
         public void RemoveFirstTest1()
         {
@@ -57,12 +70,21 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void RemoveLastTest()
+        public void RemoveFirstTest2()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList.RemoveLast();
+                linkedList2.RemoveFirst();
         }
 
+        [Benchmark]
+        public void RemoveFirstTest()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList.RemoveFirst();
+        }
+        #endregion // RemoveFirstTest
+
+        #region RemoveLastTest
         [Benchmark]
         public void RemoveLastTest1()
         {
@@ -70,15 +92,35 @@ namespace Shos.Collections.BenchMarks
                 linkedList1.RemoveLast();
         }
 
+        [Benchmark]
+        public void RemoveLastTest2()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList2.RemoveLast();
+        }
+
+        [Benchmark]
+        public void RemoveLastTest()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList.RemoveLast();
+        }
+        #endregion // RemoveLastTest
+
         [IterationSetup]
         public void Setup()
         {
-            linkedList = new ShosLinkedList<int>();
-            for (var number = 1; number <= dataNumber; number++)
-                linkedList.AddLast(number);
             linkedList1 = new ShosLinkedList1<int>();
             for (var number = 1; number <= dataNumber; number++)
                 linkedList1.AddLast(number);
+
+            linkedList2 = new ShosLinkedList2<int>();
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList2.AddLast(number);
+
+            linkedList = new ShosLinkedList<int>();
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList.AddLast(number);
         }
 
         [GlobalSetup]
