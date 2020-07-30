@@ -8,6 +8,7 @@
     <Company>Sho's Software</Company>
     <PackageProjectUrl>https://github.com/Fujiwo/Shos.Collections</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Fujiwo/Shos.Collections</RepositoryUrl>
+    <RootNamespace>Shos.Collections.BenchMarks</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

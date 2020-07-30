@@ -10,6 +10,7 @@
     <PackageProjectUrl>https://github.com/Fujiwo/Shos.Collections</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Fujiwo/Shos.Collections</RepositoryUrl>
     <IsPackable>false</IsPackable>
+    <RootNamespace>Shos.Collections.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

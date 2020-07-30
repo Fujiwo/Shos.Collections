@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 
-namespace Shos.CollectionsBenchMarks
+namespace Shos.Collections.BenchMarks
 {
     using Shos.Collections;
 
