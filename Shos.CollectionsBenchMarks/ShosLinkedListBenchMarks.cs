@@ -12,20 +12,21 @@ namespace Shos.Collections.BenchMarks
     [CsvExporter]
     public class BechmarkTest
     {
-        const int dataNumber = 10000;
+        const int dataNumber = 50000;
 
-        LinkedList     <int>? linkedList0;
+        LinkedList     <int>? linkedListDotNet;
         ShosLinkedList1<int>? linkedList1;
         ShosLinkedList2<int>? linkedList2;
+        ShosLinkedList3<int>? linkedList3;
         ShosLinkedList <int>? linkedList ;
-        ShosLinkedList3     ? linkedList3;
+        ShosLinkedList      ? linkedListNonGeneric;
 
         #region ForEachTest
         [Benchmark]
-        public void ForEachTest0()
+        public void ForEachDotNetTest()
         {
             int value;
-            foreach (var element in linkedList0)
+            foreach (var element in linkedListDotNet)
                 value = element;
         }
 
@@ -64,10 +65,10 @@ namespace Shos.Collections.BenchMarks
 
         #region AddLastTest
         [Benchmark]
-        public void AddLastTest0()
+        public void AddLastDotNetTest()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList0.AddLast(number);
+                linkedListDotNet.AddLast(number);
         }
 
         [Benchmark]
@@ -85,6 +86,13 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
+        public void AddLastTest3()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList3.AddLast(number);
+        }
+
+        [Benchmark]
         public void AddLastTest()
         {
             for (var number = 1; number <= dataNumber; number++)
@@ -92,19 +100,19 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void AddLastTest3()
+        public void AddLastTestNonGeneric()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList3.AddLast(number);
+                linkedListNonGeneric.AddLast(number);
         }
         #endregion // AddLastTest
 
         #region AddFirstTest
         [Benchmark]
-        public void AddFirstTest0()
+        public void AddFirstDotNetTest()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList0.AddFirst(number);
+                linkedListDotNet.AddFirst(number);
         }
 
         [Benchmark]
@@ -122,6 +130,13 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
+        public void AddFirstTest3()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList3.AddFirst(number);
+        }
+
+        [Benchmark]
         public void AddFirstTest()
         {
             for (var number = 1; number <= dataNumber; number++)
@@ -129,19 +144,19 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void AddFirstTest3()
+        public void AddFirstTestNonGeneric()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList3.AddFirst(number);
+                linkedListNonGeneric.AddFirst(number);
         }
         #endregion // AddFirstTest
 
         #region RemoveFirstTest
         [Benchmark]
-        public void RemoveFirstTest0()
+        public void RemoveFirstDotNetTest()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList0.RemoveFirst();
+                linkedListDotNet.RemoveFirst();
         }
 
         [Benchmark]
@@ -159,6 +174,13 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
+        public void RemoveFirstTest3()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList3.RemoveFirst();
+        }
+
+        [Benchmark]
         public void RemoveFirstTest()
         {
             for (var number = 1; number <= dataNumber; number++)
@@ -166,19 +188,19 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void RemoveFirstTest3()
+        public void RemoveFirstTestNonGeneric()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList3.RemoveFirst();
+                linkedListNonGeneric.RemoveFirst();
         }
         #endregion // RemoveFirstTest
 
         #region RemoveLastTest
         [Benchmark]
-        public void RemoveLastTest0()
+        public void RemoveLastDotNetTest()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList0.RemoveLast();
+                linkedListDotNet.RemoveLast();
         }
 
         [Benchmark]
@@ -196,6 +218,13 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
+        public void RemoveLastTest3()
+        {
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList3.RemoveLast();
+        }
+
+        [Benchmark]
         public void RemoveLastTest()
         {
             for (var number = 1; number <= dataNumber; number++)
@@ -203,20 +232,20 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void RemoveLastTest3()
+        public void RemoveLastTestNonGeneric()
         {
             for (var number = 1; number <= dataNumber; number++)
-                linkedList3.RemoveLast();
+                linkedListNonGeneric.RemoveLast();
         }
         #endregion // RemoveLastTest
 
         #region FindTest
         [Benchmark]
-        public void FindTest0()
+        public void FindDotNetTest()
         {
             LinkedListNode<int>? node = null;
             for (var number = 1; number <= dataNumber; number++)
-                node = linkedList0.Find(dataNumber / 2);
+                node = linkedListDotNet.Find(dataNumber / 2);
         }
 
         [Benchmark]
@@ -236,6 +265,14 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
+        public void FindTest3()
+        {
+            ShosLinkedList3<int>.Node? node = null;
+            for (var number = 1; number <= dataNumber; number++)
+                node = linkedList3.Find(dataNumber / 2);
+        }
+
+        [Benchmark]
         public void FindTest()
         {
             ShosLinkedList<int>.Node? node = null;
@@ -244,21 +281,21 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void FindTest3()
+        public void FindTestNonGeneric()
         {
-            ShosLinkedList3.Node? node = null;
+            ShosLinkedList.Node? node = null;
             for (var number = 1; number <= dataNumber; number++)
-                node = linkedList3.Find(dataNumber / 2);
+                node = linkedListNonGeneric.Find(dataNumber / 2);
         }
         #endregion // FindTest
 
         #region FindLastTest
         [Benchmark]
-        public void FindLastTest0()
+        public void FindLastDotNetTest()
         {
             LinkedListNode<int>? node = null;
             for (var number = 1; number <= dataNumber; number++)
-                node = linkedList0.FindLast(dataNumber / 2);
+                node = linkedListDotNet.FindLast(dataNumber / 2);
         }
 
         [Benchmark]
@@ -278,6 +315,14 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
+        public void FindLastTest3()
+        {
+            ShosLinkedList3<int>.Node? node = null;
+            for (var number = 1; number <= dataNumber; number++)
+                node = linkedList3.FindLast(dataNumber / 2);
+        }
+
+        [Benchmark]
         public void FindLastTest()
         {
             ShosLinkedList<int>.Node? node = null;
@@ -286,20 +331,20 @@ namespace Shos.Collections.BenchMarks
         }
 
         [Benchmark]
-        public void FindLastTest3()
+        public void FindLastTestNonGeneric()
         {
-            ShosLinkedList3.Node? node = null;
+            ShosLinkedList.Node? node = null;
             for (var number = 1; number <= dataNumber; number++)
-                node = linkedList3.FindLast(dataNumber / 2);
+                node = linkedListNonGeneric.FindLast(dataNumber / 2);
         }
         #endregion // FindLastTest
 
         [IterationSetup]
         public void Setup()
         {
-            linkedList0 = new LinkedList<int>();
+            linkedListDotNet = new LinkedList<int>();
             for (var number = 1; number <= dataNumber; number++)
-                linkedList0.AddLast(number);
+                linkedListDotNet.AddLast(number);
 
             linkedList1 = new ShosLinkedList1<int>();
             for (var number = 1; number <= dataNumber; number++)
@@ -309,13 +354,17 @@ namespace Shos.Collections.BenchMarks
             for (var number = 1; number <= dataNumber; number++)
                 linkedList2.AddLast(number);
 
+            linkedList3 = new ShosLinkedList3<int>();
+            for (var number = 1; number <= dataNumber; number++)
+                linkedList3.AddLast(number);
+
             linkedList = new ShosLinkedList<int>();
             for (var number = 1; number <= dataNumber; number++)
                 linkedList.AddLast(number);
 
-            linkedList3 = new ShosLinkedList3();
+            linkedListNonGeneric = new ShosLinkedList();
             for (var number = 1; number <= dataNumber; number++)
-                linkedList3.AddLast(number);
+                linkedListNonGeneric.AddLast(number);
         }
 
         [GlobalSetup]

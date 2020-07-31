@@ -12,22 +12,19 @@ namespace Shos.Collections
     {
         public class Node
         {
-            internal TValue value;
-            internal Node?  next = null;
-
-            public TValue Value => value;
-            public Node?  Next  => next;
+            public TValue Value { get; internal set; }
+            public Node?  Next  { get; internal set; } = null;
 
             public Node()
             { }
 
-            public Node(TValue value) => this.value = value;
+            public Node(TValue value) => Value = value;
         }
 
         Node top    = new Node();
         Node bottom = new Node();
 
-        public Node? First => Count == 0 ? null : top.next;
+        public Node? First => Count == 0 ? null : top.Next;
         public Node? Last  => Count == 0 ? null : PreviousNode(bottom);
 
         public int Count { get; private set; } = 0;
@@ -50,8 +47,8 @@ namespace Shos.Collections
                 throw new ArgumentNullException();
 
             var newNode  = new Node(value);
-            newNode.next = node.next;
-            node.next    = newNode;
+            newNode.Next = node.Next;
+            node.Next    = newNode;
             Count++;
         }
 
@@ -61,8 +58,8 @@ namespace Shos.Collections
                 throw new ArgumentNullException();
 
             var newNode             = new Node(value);
-            newNode.next            = node;
-            PreviousNode(node).next = newNode;
+            newNode.Next            = node;
+            PreviousNode(node).Next = newNode;
             Count++;
         }
 
@@ -72,7 +69,7 @@ namespace Shos.Collections
                 throw new ArgumentNullException();
 
             var previousNode = PreviousNode(node);
-            previousNode.next = node.next;
+            previousNode.Next = node.Next;
             Count--;
         }
 
@@ -114,8 +111,8 @@ namespace Shos.Collections
             if (index + Count > array.Length)
                 throw new ArgumentException();
 
-            for (var node = top.next; node != bottom; node = node.next)
-                array[index++] = node.value;
+            for (var node = top.Next; node != bottom; node = node.Next)
+                array[index++] = node.Value;
         }
 
         public bool Contains(TValue value)
@@ -123,8 +120,8 @@ namespace Shos.Collections
 
         public Node? Find(TValue value)
         {
-            for (var node = top.next; node != bottom; node = node.next) {
-                if (defaultEqualityComparer.Equals(node.value, value))
+            for (var node = top.Next; node != bottom; node = node.Next) {
+                if (defaultEqualityComparer.Equals(node.Value, value))
                     return node;
             }
             return null;
@@ -133,8 +130,8 @@ namespace Shos.Collections
         public Node? FindLast(TValue value)
         {
             Node? foundNode = null;
-            for (var node = top.next; node != bottom; node = node.next) {
-                if (defaultEqualityComparer.Equals(node.value, value))
+            for (var node = top.Next; node != bottom; node = node.Next) {
+                if (defaultEqualityComparer.Equals(node.Value, value))
                     foundNode = node;
             }
             return foundNode;
@@ -142,8 +139,8 @@ namespace Shos.Collections
 
         public IEnumerator<TValue> GetEnumerator()
         {
-            for (var node = top.next; node != bottom; node = node.next)
-                yield return node.value;
+            for (var node = top.Next; node != bottom; node = node.Next)
+                yield return node.Value;
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -153,15 +150,15 @@ namespace Shos.Collections
             if (node == null)
                 throw new ArgumentNullException();
 
-            for (var previousNode = top; previousNode != null; previousNode = previousNode.next) {
-                if (previousNode.next == node)
+            for (var previousNode = top; previousNode != null; previousNode = previousNode.Next) {
+                if (previousNode.Next == node)
                     return previousNode;
             }
             throw new InvalidOperationException();
         }
 
         static void Connect(Node node1, Node node2)
-            => node1.next = node2;
+            => node1.Next = node2;
 
         static readonly EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
     }
