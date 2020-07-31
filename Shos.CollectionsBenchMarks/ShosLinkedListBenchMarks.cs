@@ -6,11 +6,11 @@ namespace Shos.Collections.BenchMarks
 {
     using Shos.Collections;
 
-    #region BechmarkTest
+    #region BenchmarkTest
     [ShortRunJob]
     [HtmlExporter]
     [CsvExporter]
-    public class BechmarkTest
+    public class BenchmarkTest
     {
         const int dataNumber = 50000;
 
@@ -21,48 +21,53 @@ namespace Shos.Collections.BenchMarks
         ShosLinkedList <int>? linkedList ;
         ShosLinkedList      ? linkedListNonGeneric;
 
+        int temporaryValue;
+
         #region ForEachTest
         [Benchmark]
         public void ForEachDotNetTest()
         {
-            int value;
             foreach (var element in linkedListDotNet)
-                value = element;
+                temporaryValue = element;
         }
 
         [Benchmark]
         public void ForEachTest1()
         {
-            int value;
             foreach (var element in linkedList1)
-                value = element;
+                temporaryValue = element;
         }
 
         [Benchmark]
         public void ForEachTest2()
         {
-            int value;
             foreach (var element in linkedList2)
-                value = element;
+                temporaryValue = element;
         }
 
         [Benchmark]
         public void ForEachTest()
         {
-            int value;
             foreach (var element in linkedList)
-                value = element;
+                temporaryValue = element;
         }
 
         [Benchmark]
         public void ForEachTest3()
         {
-            int value;
             foreach (var element in linkedList3)
-                value = (int)element;
+                temporaryValue = element;
+        }
+
+        [Benchmark]
+        public void ForEachTestNonGeneric()
+        {
+            foreach (var element in linkedList3)
+                temporaryValue = (int)element;
         }
         #endregion // ForEachTest
 
+#if QQQ
         #region AddLastTest
         [Benchmark]
         public void AddLastDotNetTest()
@@ -338,6 +343,7 @@ namespace Shos.Collections.BenchMarks
                 node = linkedListNonGeneric.FindLast(dataNumber / 2);
         }
         #endregion // FindLastTest
+#endif // QQQ
 
         [IterationSetup]
         public void Setup()
@@ -370,12 +376,12 @@ namespace Shos.Collections.BenchMarks
         [GlobalSetup]
         public void Initialize() {}
     }
-    #endregion // BechmarkTest
+#endregion // BenchmarkTest
 
     class Program
     {
-        #region Main
-        static void Main() => BenchmarkRunner.Run<BechmarkTest>();
-        #endregion // Main
+#region Main
+        static void Main() => BenchmarkRunner.Run<BenchmarkTest>();
+#endregion // Main
     }
 }

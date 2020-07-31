@@ -160,7 +160,11 @@ namespace Shos.Collections
         }
 
         public IEnumerator<TValue> GetEnumerator()
-            => new Enumerator(this);
+        {
+            for (var node = top.Next; node != bottom; node = node.Next)
+                yield return node.Value;
+
+        }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 

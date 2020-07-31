@@ -50,13 +50,15 @@ namespace Shos.Collections
         //        => currentNode = linkedList.top;
         //}
 
-        Node top    = new Node();
-        Node bottom = new Node();
 
-        public Node? First => Count == 0 ? null : top.next;
-        public Node? Last  => Count == 0 ? null : bottom.previous;
+        int           count  = 0;
+        readonly Node top    = new Node();
+        readonly Node bottom = new Node();
 
-        public int Count { get; private set; } = 0;
+        public Node? First => count == 0 ? null : top.next;
+        public Node? Last  => count == 0 ? null : bottom.previous;
+
+        public int Count => count;
 
         public ShosLinkedList() => Connect(top, bottom);
 
@@ -105,14 +107,14 @@ namespace Shos.Collections
 
         public void RemoveFirst()
         {
-            if (Count == 0)
+            if (count == 0)
                 throw new InvalidOperationException();
             Remove(First);
         }
 
         public void RemoveLast()
         {
-            if (Count == 0)
+            if (count == 0)
                 throw new InvalidOperationException();
             Remove(Last);
         }
@@ -120,7 +122,7 @@ namespace Shos.Collections
         public void Clear()
         {
             Connect(top, bottom);
-            Count = 0;
+            count = 0;
         }
 
         public void CopyTo(object[] array, int index)
@@ -129,7 +131,7 @@ namespace Shos.Collections
                 throw new ArgumentNullException();
             if (index < 0)
                 throw new ArgumentOutOfRangeException();
-            if (index + Count > array.Length)
+            if (index + count > array.Length)
                 throw new ArgumentException();
 
             for (var node = top.next; node != bottom; node = node.next)
@@ -176,13 +178,13 @@ namespace Shos.Collections
         {
             Connect(node1  , newNode);
             Connect(newNode, node2  );
-            Count++;
+            count++;
         }
 
         void RemoveNode(Node node)
         {
             Connect(node.previous, node.next);
-            Count--;
+            count--;
         }
     }
 }

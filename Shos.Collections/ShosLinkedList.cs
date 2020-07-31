@@ -26,43 +26,45 @@ namespace Shos.Collections
             public Node(TValue value) => this.value = value;
         }
 
-        struct Enumerator : IEnumerator<TValue>
-        {
-            readonly ShosLinkedList<TValue> linkedList;
-            Node currentNode;
+        //struct Enumerator : IEnumerator<TValue>
+        //{
+        //    readonly ShosLinkedList<TValue> linkedList;
+        //    Node                            currentNode;
 
-            public TValue Current => currentNode.value;
+        //    public TValue Current => currentNode.value;
 
-            object IEnumerator.Current => Current;
+        //    object IEnumerator.Current => Current;
 
-            internal Enumerator(ShosLinkedList<TValue> linkedList)
-            {
-                this.linkedList = linkedList;
-                currentNode = linkedList.top;
-            }
+        //    internal Enumerator(ShosLinkedList<TValue> linkedList)
+        //    {
+        //        this.linkedList = linkedList;
+        //        currentNode     = linkedList.top;
+        //    }
 
-            public void Dispose()
-            { }
+        //    public void Dispose()
+        //    {}
 
-            public bool MoveNext()
-            {
-                if (currentNode.next == linkedList.bottom)
-                    return false;
-                currentNode = currentNode.next;
-                return true;
-            }
+        //    public bool MoveNext()
+        //    {
+        //        if (currentNode.next == linkedList.bottom)
+        //            return false;
+        //        currentNode = currentNode.next;
+        //        return true;
+        //    }
 
-            public void Reset()
-                => currentNode = linkedList.top;
-        }
+        //    public void Reset()
+        //        => currentNode = linkedList.top;
+        //}
 
-        Node top    = new Node();
-        Node bottom = new Node();
+        int count            = 0;
 
-        public Node? First => Count == 0 ? null : top   .next    ;
-        public Node? Last  => Count == 0 ? null : bottom.previous;
+        readonly Node top    = new Node();
+        readonly Node bottom = new Node();
 
-        public int Count { get; private set; } = 0;
+        public Node? First => count == 0 ? null : top   .next    ;
+        public Node? Last  => count == 0 ? null : bottom.previous;
+
+        public int Count => count;
 
         public ShosLinkedList() => Connect(top, bottom);
 
@@ -111,14 +113,14 @@ namespace Shos.Collections
 
         public void RemoveFirst()
         {
-            if (Count == 0)
+            if (count == 0)
                 throw new InvalidOperationException();
             Remove(First);
         }
 
         public void RemoveLast()
         {
-            if (Count == 0)
+            if (count == 0)
                 throw new InvalidOperationException();
             Remove(Last);
         }
@@ -126,7 +128,7 @@ namespace Shos.Collections
         public void Clear()
         {
             Connect(top, bottom);
-            Count = 0;
+            count = 0;
         }
 
         public void CopyTo(TValue[] array, int index)
@@ -135,7 +137,7 @@ namespace Shos.Collections
                 throw new ArgumentNullException();
             if (index < 0)
                 throw new ArgumentOutOfRangeException();
-            if (index + Count > array.Length)
+            if (index + count > array.Length)
                 throw new ArgumentException();
 
             for (var node = top.next; node != bottom; node = node.next)
@@ -163,8 +165,15 @@ namespace Shos.Collections
             return null;
         }
 
+        //public IEnumerator<TValue> GetEnumerator()
+        //    => new Enumerator(this);
+
         public IEnumerator<TValue> GetEnumerator()
-            => new Enumerator(this);
+        {
+            for (var node = top.Next; node != bottom; node = node.Next)
+                yield return node.Value;
+
+        }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -178,13 +187,13 @@ namespace Shos.Collections
         {
             Connect(node1  , newNode);
             Connect(newNode, node2  );
-            Count++;
+            count++;
         }
 
         void RemoveNode(Node node)
         {
             Connect(node.previous, node.next);
-            Count--;
+            count--;
         }
 
         static readonly EqualityComparer<TValue> defaultEqualityComparer = EqualityComparer<TValue>.Default;
