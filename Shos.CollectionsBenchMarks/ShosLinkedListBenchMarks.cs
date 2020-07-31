@@ -12,7 +12,7 @@ namespace Shos.Collections.BenchMarks
     [CsvExporter]
     public class BenchmarkTest
     {
-        const int dataNumber = 50000;
+        const int dataNumber = 10000;
 
         LinkedList     <int>? linkedListDotNet;
         ShosLinkedList1<int>? linkedList1;
@@ -67,7 +67,6 @@ namespace Shos.Collections.BenchMarks
         }
         #endregion // ForEachTest
 
-#if QQQ
         #region AddLastTest
         [Benchmark]
         public void AddLastDotNetTest()
@@ -343,34 +342,33 @@ namespace Shos.Collections.BenchMarks
                 node = linkedListNonGeneric.FindLast(dataNumber / 2);
         }
         #endregion // FindLastTest
-#endif // QQQ
 
         [IterationSetup]
         public void Setup()
         {
+            static void Initialize(dynamic linkedList)
+            {
+                for (var number = 1; number <= dataNumber; number++)
+                    linkedList.AddLast(number);
+            }
+
             linkedListDotNet = new LinkedList<int>();
-            for (var number = 1; number <= dataNumber; number++)
-                linkedListDotNet.AddLast(number);
+            Initialize(linkedListDotNet);
 
             linkedList1 = new ShosLinkedList1<int>();
-            for (var number = 1; number <= dataNumber; number++)
-                linkedList1.AddLast(number);
+            Initialize(linkedList1);
 
             linkedList2 = new ShosLinkedList2<int>();
-            for (var number = 1; number <= dataNumber; number++)
-                linkedList2.AddLast(number);
+            Initialize(linkedList2);
 
             linkedList3 = new ShosLinkedList3<int>();
-            for (var number = 1; number <= dataNumber; number++)
-                linkedList3.AddLast(number);
+            Initialize(linkedList3);
 
             linkedList = new ShosLinkedList<int>();
-            for (var number = 1; number <= dataNumber; number++)
-                linkedList.AddLast(number);
+            Initialize(linkedList);
 
             linkedListNonGeneric = new ShosLinkedList();
-            for (var number = 1; number <= dataNumber; number++)
-                linkedListNonGeneric.AddLast(number);
+            Initialize(linkedListNonGeneric);
         }
 
         [GlobalSetup]
